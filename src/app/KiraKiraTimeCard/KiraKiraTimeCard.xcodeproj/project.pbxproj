@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D01DC03F1AC3AC710047966D /* KiraKiraTimeCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D01DC03B1AC3AC710047966D /* KiraKiraTimeCard.xcdatamodeld */; };
-		D01DC0401AC3AC710047966D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D01DC03D1AC3AC710047966D /* Info.plist */; };
 		D01DC0431AC3ACA00047966D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D01DC0421AC3ACA00047966D /* Images.xcassets */; };
 		D01DC0531AC3ACE80047966D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC04A1AC3ACE80047966D /* AppDelegate.swift */; };
 		D01DC0541AC3ACE80047966D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC04D1AC3ACE80047966D /* MainViewController.swift */; };
@@ -280,7 +279,6 @@
 			files = (
 				D01DC0431AC3ACA00047966D /* Images.xcassets in Resources */,
 				D01DC05B1AC3AE5C0047966D /* LaunchScreen.xib in Resources */,
-				D01DC0401AC3AC710047966D /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
