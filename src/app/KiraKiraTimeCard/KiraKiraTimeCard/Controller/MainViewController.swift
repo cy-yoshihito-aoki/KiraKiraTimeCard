@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  KiraKiraTimeCard
 //
 //  Created by saimushi on 2015/03/26.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        NSLog("is?");
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +21,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    /*
+    *ステータスバー非表示
+    */
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 
 }
-

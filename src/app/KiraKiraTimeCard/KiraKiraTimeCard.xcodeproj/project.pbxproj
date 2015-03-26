@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D091F6BD1AC3970A000CD40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D091F6BC1AC3970A000CD40D /* AppDelegate.swift */; };
-		D091F6C01AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D091F6BE1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodeld */; };
-		D091F6C21AC3970A000CD40D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D091F6C11AC3970A000CD40D /* ViewController.swift */; };
-		D091F6C51AC3970A000CD40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D091F6C31AC3970A000CD40D /* Main.storyboard */; };
-		D091F6C71AC3970A000CD40D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D091F6C61AC3970A000CD40D /* Images.xcassets */; };
-		D091F6CA1AC3970A000CD40D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D091F6C81AC3970A000CD40D /* LaunchScreen.xib */; };
 		D091F6D61AC3970A000CD40D /* KiraKiraTimeCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D091F6D51AC3970A000CD40D /* KiraKiraTimeCardTests.swift */; };
+		D091F6E31AC39E3A000CD40D /* View in Resources */ = {isa = PBXBuildFile; fileRef = D091F6DF1AC39E3A000CD40D /* View */; };
+		D091F6E41AC39E3A000CD40D /* Model in Resources */ = {isa = PBXBuildFile; fileRef = D091F6E01AC39E3A000CD40D /* Model */; };
+		D091F6E51AC39E3A000CD40D /* Controller in Resources */ = {isa = PBXBuildFile; fileRef = D091F6E11AC39E3A000CD40D /* Controller */; };
+		D091F6E61AC39E3A000CD40D /* Common in Resources */ = {isa = PBXBuildFile; fileRef = D091F6E21AC39E3A000CD40D /* Common */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,16 +26,14 @@
 
 /* Begin PBXFileReference section */
 		D091F6B71AC3970A000CD40D /* KiraKiraTimeCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiraKiraTimeCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D091F6BB1AC3970A000CD40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D091F6BC1AC3970A000CD40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D091F6BF1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KiraKiraTimeCard.xcdatamodel; sourceTree = "<group>"; };
-		D091F6C11AC3970A000CD40D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D091F6C41AC3970A000CD40D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D091F6C61AC3970A000CD40D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D091F6C91AC3970A000CD40D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D091F6BB1AC3970A000CD40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Common/Info.plist; sourceTree = "<group>"; };
 		D091F6CF1AC3970A000CD40D /* KiraKiraTimeCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraKiraTimeCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D091F6D41AC3970A000CD40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D091F6D51AC3970A000CD40D /* KiraKiraTimeCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KiraKiraTimeCardTests.swift; sourceTree = "<group>"; };
+		D091F6DF1AC39E3A000CD40D /* View */ = {isa = PBXFileReference; lastKnownFileType = folder; path = View; sourceTree = "<group>"; };
+		D091F6E01AC39E3A000CD40D /* Model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Model; sourceTree = "<group>"; };
+		D091F6E11AC39E3A000CD40D /* Controller */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Controller; sourceTree = "<group>"; };
+		D091F6E21AC39E3A000CD40D /* Common */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Common; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +75,10 @@
 		D091F6B91AC3970A000CD40D /* KiraKiraTimeCard */ = {
 			isa = PBXGroup;
 			children = (
-				D091F6BC1AC3970A000CD40D /* AppDelegate.swift */,
-				D091F6C11AC3970A000CD40D /* ViewController.swift */,
-				D091F6C31AC3970A000CD40D /* Main.storyboard */,
-				D091F6C61AC3970A000CD40D /* Images.xcassets */,
-				D091F6C81AC3970A000CD40D /* LaunchScreen.xib */,
-				D091F6BE1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodeld */,
+				D091F6DF1AC39E3A000CD40D /* View */,
+				D091F6E01AC39E3A000CD40D /* Model */,
+				D091F6E11AC39E3A000CD40D /* Controller */,
+				D091F6E21AC39E3A000CD40D /* Common */,
 				D091F6BA1AC3970A000CD40D /* Supporting Files */,
 			);
 			path = KiraKiraTimeCard;
@@ -195,9 +189,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D091F6C51AC3970A000CD40D /* Main.storyboard in Resources */,
-				D091F6CA1AC3970A000CD40D /* LaunchScreen.xib in Resources */,
-				D091F6C71AC3970A000CD40D /* Images.xcassets in Resources */,
+				D091F6E41AC39E3A000CD40D /* Model in Resources */,
+				D091F6E51AC39E3A000CD40D /* Controller in Resources */,
+				D091F6E31AC39E3A000CD40D /* View in Resources */,
+				D091F6E61AC39E3A000CD40D /* Common in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,9 +210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D091F6C21AC3970A000CD40D /* ViewController.swift in Sources */,
-				D091F6C01AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodeld in Sources */,
-				D091F6BD1AC3970A000CD40D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,25 +230,6 @@
 			targetProxy = D091F6D01AC3970A000CD40D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		D091F6C31AC3970A000CD40D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D091F6C41AC3970A000CD40D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D091F6C81AC3970A000CD40D /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D091F6C91AC3970A000CD40D /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D091F6D71AC3970A000CD40D /* Debug */ = {
@@ -340,10 +313,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KiraKiraTimeCard/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/KiraKiraTimeCard/Common/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "KiraKiraTimeCard-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -351,9 +328,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KiraKiraTimeCard/Info.plist;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/KiraKiraTimeCard/Common/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "KiraKiraTimeCard-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -420,19 +400,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		D091F6BE1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D091F6BF1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodel */,
-			);
-			currentVersion = D091F6BF1AC3970A000CD40D /* KiraKiraTimeCard.xcdatamodel */;
-			path = KiraKiraTimeCard.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = D091F6AF1AC3970A000CD40D /* Project object */;
 }
