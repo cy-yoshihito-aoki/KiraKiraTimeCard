@@ -16,6 +16,10 @@
 		D01DC0561AC3ACE80047966D /* TimeRecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC0501AC3ACE80047966D /* TimeRecordModel.swift */; };
 		D01DC0571AC3ACE80047966D /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC0521AC3ACE80047966D /* ClockView.swift */; };
 		D01DC05B1AC3AE5C0047966D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01DC05A1AC3AE5C0047966D /* LaunchScreen.xib */; };
+		D01DC05F1AC3B0C60047966D /* iBeaconAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC05E1AC3B0C60047966D /* iBeaconAgent.swift */; };
+		D01DC0631AC3B0E90047966D /* AuthCutInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC0601AC3B0E90047966D /* AuthCutInView.swift */; };
+		D01DC0641AC3B0E90047966D /* AuthorizeEnabledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC0611AC3B0E90047966D /* AuthorizeEnabledView.swift */; };
+		D01DC0651AC3B0E90047966D /* UnauthCutInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01DC0621AC3B0E90047966D /* UnauthCutInView.swift */; };
 		D091F6D61AC3970A000CD40D /* KiraKiraTimeCardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D091F6D51AC3970A000CD40D /* KiraKiraTimeCardTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +43,10 @@
 		D01DC0501AC3ACE80047966D /* TimeRecordModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRecordModel.swift; sourceTree = "<group>"; };
 		D01DC0521AC3ACE80047966D /* ClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
 		D01DC05A1AC3AE5C0047966D /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = "Supporting Files/LaunchScreen.xib"; sourceTree = "<group>"; };
+		D01DC05E1AC3B0C60047966D /* iBeaconAgent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iBeaconAgent.swift; sourceTree = "<group>"; };
+		D01DC0601AC3B0E90047966D /* AuthCutInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCutInView.swift; sourceTree = "<group>"; };
+		D01DC0611AC3B0E90047966D /* AuthorizeEnabledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorizeEnabledView.swift; sourceTree = "<group>"; };
+		D01DC0621AC3B0E90047966D /* UnauthCutInView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnauthCutInView.swift; sourceTree = "<group>"; };
 		D091F6B71AC3970A000CD40D /* KiraKiraTimeCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KiraKiraTimeCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D091F6CF1AC3970A000CD40D /* KiraKiraTimeCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KiraKiraTimeCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D091F6D41AC3970A000CD40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -111,8 +119,27 @@
 			isa = PBXGroup;
 			children = (
 				D01DC0521AC3ACE80047966D /* ClockView.swift */,
+				D01DC0611AC3B0E90047966D /* AuthorizeEnabledView.swift */,
+				D01DC0601AC3B0E90047966D /* AuthCutInView.swift */,
+				D01DC0621AC3B0E90047966D /* UnauthCutInView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D01DC05C1AC3B0C60047966D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				D01DC05D1AC3B0C60047966D /* iBeacon */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		D01DC05D1AC3B0C60047966D /* iBeacon */ = {
+			isa = PBXGroup;
+			children = (
+				D01DC05E1AC3B0C60047966D /* iBeaconAgent.swift */,
+			);
+			path = iBeacon;
 			sourceTree = "<group>";
 		};
 		D091F6AE1AC3970A000CD40D = {
@@ -137,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				D01DC0421AC3ACA00047966D /* Images.xcassets */,
+				D01DC05C1AC3B0C60047966D /* Library */,
 				D01DC0481AC3ACE80047966D /* Class */,
 				D091F6BA1AC3970A000CD40D /* Supporting Files */,
 			);
@@ -271,11 +299,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01DC0541AC3ACE80047966D /* MainViewController.swift in Sources */,
+				D01DC0641AC3B0E90047966D /* AuthorizeEnabledView.swift in Sources */,
 				D01DC0571AC3ACE80047966D /* ClockView.swift in Sources */,
+				D01DC0651AC3B0E90047966D /* UnauthCutInView.swift in Sources */,
 				D01DC0551AC3ACE80047966D /* BeaconModel.swift in Sources */,
 				D01DC0531AC3ACE80047966D /* AppDelegate.swift in Sources */,
 				D01DC03F1AC3AC710047966D /* KiraKiraTimeCard.xcdatamodeld in Sources */,
 				D01DC0561AC3ACE80047966D /* TimeRecordModel.swift in Sources */,
+				D01DC0631AC3B0E90047966D /* AuthCutInView.swift in Sources */,
+				D01DC05F1AC3B0C60047966D /* iBeaconAgent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
