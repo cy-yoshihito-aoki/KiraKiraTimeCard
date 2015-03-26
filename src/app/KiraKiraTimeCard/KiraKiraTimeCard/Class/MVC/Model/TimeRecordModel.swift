@@ -1,5 +1,5 @@
 //
-//  clockView.swift
+//  TimeRecordModel.swift
 //  KiraKiraTimeCard
 //
 //  Created by saimushi on 2015/03/26.
