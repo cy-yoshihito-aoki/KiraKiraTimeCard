@@ -1,8 +1,8 @@
 # KiraKiraTimeCard
 キラキラタイムカード
 
-OTA
-[Adhoc OTA](/doc/ota/iosota.plist)
+##OTA
+[Adhoc OTA](https://raw.github.com/cy-yoshihito-aoki/KiraKiraTimeCard/master/doc/ota/iosota.plist)
 
 ビーコンチェック開始（startMonitoringForRegion）して
 開始に成功すると（didStartMonitoringForRegion）が呼ばれ、
