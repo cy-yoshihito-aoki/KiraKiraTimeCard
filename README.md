@@ -1,6 +1,9 @@
 # KiraKiraTimeCard
 キラキラタイムカード
 
+OTA
+[Adhoc OTA](/doc/ota/iosota.plist)
+
 ビーコンチェック開始（startMonitoringForRegion）して
 開始に成功すると（didStartMonitoringForRegion）が呼ばれ、
 開始に失敗すると（monitoringDidFailForRegion）。
