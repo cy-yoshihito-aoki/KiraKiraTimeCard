@@ -7,3 +7,43 @@
 //
 
 import Foundation
+
+protocol BeaconModelProtocol :NSObjectProtocol {
+    // インターフェースの定義
+    func execute(argSuccessInLocationBlock :(() -> ()), argSuccessBeaconBlock :(() -> ()))
+}
+
+class BeaconModel :NSObject, BeaconModelProtocol {
+    var ibeacon :iBeaconAgent
+    // ビーコンロケーション内に入った時に実行されるブロック
+    var successInLocationBlock: (() -> ())
+    // ビーコン通信成功時に実行されるブロック
+    var successBeaconBlock: (() -> ())
+
+    // コンストラクタ
+    override init() {
+        // iBeaconAgentを初期化
+        ibeacon = iBeaconAgent()
+        successInLocationBlock = {
+            // デフォルトは何もしない空の実行
+            NSLog("イン ロケーション 成功")
+        }
+        self.successBeaconBlock = {
+            // デフォルトは何もしない空の実行
+            NSLog("ビーコン通信 成功")
+        }
+        super.init()
+    }
+
+    // デストラクタ
+    deinit{
+    }
+
+    func execute(argSuccessInLocationBlock :(() -> ()), argSuccessBeaconBlock :(() -> ())) {
+        // ブロックの登録
+        successInLocationBlock = argSuccessInLocationBlock
+        successBeaconBlock = argSuccessBeaconBlock
+        // ビーコン監視を開始
+        ibeacon.start()
+    }
+}
