@@ -13,7 +13,7 @@ protocol BeaconModelProtocol :NSObjectProtocol {
     func execute(argSuccessInLocationBlock :(() -> ()), argSuccessBeaconBlock :(() -> ()))
 }
 
-class BeaconModel :NSObject, BeaconModelProtocol {
+class BeaconModel :NSObject, BeaconModelProtocol, iBeaconAgentDelegate {
     var ibeacon :iBeaconAgent
     // ビーコンロケーション内に入った時に実行されるブロック
     var successInLocationBlock: (() -> ())
@@ -33,6 +33,8 @@ class BeaconModel :NSObject, BeaconModelProtocol {
             NSLog("ビーコン通信 成功")
         }
         super.init()
+        // ビーコンエージェントのデレゲートを受け取る
+        ibeacon.delegate = self
     }
 
     // デストラクタ
@@ -45,5 +47,17 @@ class BeaconModel :NSObject, BeaconModelProtocol {
         successBeaconBlock = argSuccessBeaconBlock
         // ビーコン監視を開始
         ibeacon.start()
+    }
+
+    // ビーコンの近くに入った時のデレゲートメソッド
+    func inRangLocation() {
+        // ビーコンロケーション内に入った時のブロックを実行
+        successInLocationBlock();
+    }
+
+    // ビーコンと通信出来た時のデレゲートメソッド
+    func inRangBeacon() {
+        // ビーコン通信成功時のブロックを実行
+        successBeaconBlock();
     }
 }
