@@ -11,7 +11,7 @@ import Foundation
 protocol TimeRecordModelProtocol :NSObjectProtocol {
     // インターフェースの定義
     var authorized :Bool {get}
-    func save() -> Bool
+    func save(argSuccessSaveBlock :(() -> ())) -> Bool
     func load() -> NSMutableArray
 }
 
@@ -22,9 +22,11 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
         authorized = false
     }
 
-    func save() -> Bool {
+    func save(argSuccessSaveBlock :(() -> ())) -> Bool {
         authorized = true
         // NSUserDefaultsにタイムレコード保存
+        // 終了ブロックをコール
+        argSuccessSaveBlock()
         return true
     }
 

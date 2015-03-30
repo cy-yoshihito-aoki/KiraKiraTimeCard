@@ -38,7 +38,9 @@ class MainViewController: UIViewController {
                 self.view.addSubview(UnauthCutInView(frame: self.view.frame))
             }
             // タイムレコード保存
-            timeRecoardModel.save()
+            timeRecoardModel.save({ () -> () in
+                beaconModel.stop()
+            })
         })
     }
 
