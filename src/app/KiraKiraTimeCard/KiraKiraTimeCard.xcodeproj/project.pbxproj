@@ -410,11 +410,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shuhei ohno (NJT5L644FV)";
 				INFOPLIST_FILE = "$(SRCROOT)/KiraKiraTimeCard/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77ea6e0b-c0f1-4812-b6a3-b0dde9e3f0e9";
+				PROVISIONING_PROFILE = "7d079b2b-7ca5-4062-b416-05ab478f3fa0";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
