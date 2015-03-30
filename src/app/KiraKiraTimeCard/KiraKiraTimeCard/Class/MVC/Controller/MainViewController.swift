@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         // ビーコン監視実行開始
         beaconModel?.execute({ () -> () in
             // ビーコンの近くに来たのでログイン可能画面を表示
-            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: true)
+            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: timeRecoardModel.authorized)
             self.view.addSubview(self.authorizeEnabledView!)
         }, { () -> () in
             // 現在のログイン状態チェック
