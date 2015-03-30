@@ -24,6 +24,10 @@ class ClockView :UIView {
         label.text = "ClockView"
         addSubview(label)
         
+        
+        
+        addSubview(UIImageView(image: UIImage(named: "clock_bg")))
+        
         secondHandImageView.backgroundColor = UIColor.orangeColor();
         minuteHandImageView.backgroundColor = UIColor.yellowColor();
         hourHandImageView.backgroundColor   = UIColor.blueColor();
