@@ -10,7 +10,7 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var beaconModel :BeaconModel?
+    var beaconModel :BeaconModel = BeaconModel()
     var authorizeEnabledView :UIView?
     var authCutInView :UIView?
 
@@ -29,14 +29,11 @@ class MainViewController: UIViewController {
             authCutInView?.removeFromSuperview()
         }
         // 描画完了したらビーコンをスタート
-        if (beaconModel == nil){
-            beaconModel? = BeaconModel()
-        }
         var timeRecoardModel :TimeRecordModel = TimeRecordModel()
         // ビーコン監視実行開始
-        beaconModel?.execute({ () -> () in
+        beaconModel.execute({ () -> () in
             // ビーコンの近くに来たのでログイン可能画面を表示
-            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: true)
+            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: timeRecoardModel.authorized)
             self.view.addSubview(self.authorizeEnabledView!)
         }, { () -> () in
             // 現在のログイン状態チェック
@@ -54,7 +51,7 @@ class MainViewController: UIViewController {
             }
             // タイムレコード保存
             timeRecoardModel.save({ () -> () in
-                self.beaconModel!.stop()
+                self.beaconModel.stop()
             })
         })
     }

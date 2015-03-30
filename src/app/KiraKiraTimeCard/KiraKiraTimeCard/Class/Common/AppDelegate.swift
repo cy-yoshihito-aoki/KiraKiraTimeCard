@@ -12,18 +12,18 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var window: UIWindow = UIWindow(frame: UIScreen.mainScreen().bounds)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // MainViewControllerをrootViewControllerとして、アプリをランチする
         let mainVC: MainViewController = MainViewController()
         // UIWindowの設定
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        self.window.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         // メインウィンドウのrootVCにmainVCを指定
-        self.window?.rootViewController = mainVC
+        self.window.rootViewController = mainVC
         // メインウィンドウの描画を実行
-        self.window?.makeKeyAndVisible()
+        self.window.makeKeyAndVisible()
         return true
     }
 
