@@ -114,6 +114,10 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         case .Inside: // すでに領域内にいる場合は（didEnterRegion）は呼ばれない
             
             trackLocationManager.startRangingBeaconsInRegion(beaconRegion);
+            if (delegate != nil) {
+                delegate?.inRangLocation()
+            }
+            //sendLocalNotificationWithMessage("会社についたよ")
             // →(didRangeBeacons)で測定をはじめる
             break;
             
@@ -143,7 +147,7 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         if (delegate != nil) {
             delegate?.inRangLocation()
         }
-        sendLocalNotificationWithMessage("会社についたよ")
+        //sendLocalNotificationWithMessage("会社についたよ")
     }
     
     //領域から出た時
@@ -151,7 +155,7 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         //測定を停止する
         self.trackLocationManager.stopRangingBeaconsInRegion(self.beaconRegion)
 //        reset()
-        sendLocalNotificationWithMessage("会社からでたよ")
+        //sendLocalNotificationWithMessage("会社からでたよ")
     }
     
     //観測失敗
@@ -183,15 +187,20 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         */
         if (beacon.proximity == CLProximity.Unknown) {
 //            self.distance.text = "ビーコン見つからないよ"
-            reset()
+//            reset()
             return
         } else if (beacon.proximity == CLProximity.Immediate) {
 //            self.distance.text = "ビーコン近づけすぎ！"
+            return
         } else if (beacon.proximity == CLProximity.Near) {
 //            self.distance.text = "出勤できるよ"
         } else if (beacon.proximity == CLProximity.Far) {
 //            self.distance.text = "ビーコンに近づけて"
+            return
+        } else {
+            return
         }
+
 //        self.status.text   = "７階についたよ"
 //        self.uuid.text     = beacon.proximityUUID.UUIDString
 //        self.major.text    = "\(beacon.major)"
@@ -216,9 +225,9 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
     }
     
     //ローカル通知
-    func sendLocalNotificationWithMessage(message: String!) {
-        let notification:UILocalNotification = UILocalNotification()
-        notification.alertBody = message
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
+//    func sendLocalNotificationWithMessage(message: String!) {
+//        let notification:UILocalNotification = UILocalNotification()
+//        notification.alertBody = message
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//    }
 }

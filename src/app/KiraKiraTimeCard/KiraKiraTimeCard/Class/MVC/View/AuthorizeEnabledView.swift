@@ -33,13 +33,13 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
     convenience required init(frame: CGRect, auhorized: Bool) {
         self.init(frame: frame)
         if (auhorized == true){
-            var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0, frame.width, 20))
+            var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0 + 20, frame.width, 20))
             label.textAlignment = NSTextAlignment.Center
             label.text = "AuthorizeEnabledView\nnow authorized"
             addSubview(label)
         }
         else {
-            var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0, frame.width, 20))
+            var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0 + 20, frame.width, 20))
             label.textAlignment = NSTextAlignment.Center
             label.text = "AuthorizeEnabledView\nnow unauthorized"
             addSubview(label)

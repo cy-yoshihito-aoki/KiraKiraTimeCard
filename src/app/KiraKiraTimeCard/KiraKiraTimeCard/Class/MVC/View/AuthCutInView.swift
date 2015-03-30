@@ -13,7 +13,7 @@ import UIKit
 class AuthCutInView :UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
-        var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0, frame.width, 20))
+        var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0 + 40, frame.width, 20))
         label.textAlignment = NSTextAlignment.Center
         label.text = "AuthCutInView"
         addSubview(label)
