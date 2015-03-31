@@ -27,10 +27,12 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
     var delegate :iBeaconAgentDelegate?
     var trackLocationManager :CLLocationManager!
     var beaconRegion :CLBeaconRegion!
+    var locationInRanged :Bool!
 
     // コンストラクタ
     override init() {
         super.init()
+        locationInRanged = false
         // ロケーションマネージャを作成する
         self.trackLocationManager = CLLocationManager()
         
@@ -58,8 +60,8 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
             self.trackLocationManager.requestAlwaysAuthorization()
             return
         }
-        // ロケーションマネージャーの使用が許可済みならビーコンの観測をココで開始させる
-        trackLocationManager.startMonitoringForRegion(self.beaconRegion)
+//        // ロケーションマネージャーの使用が許可済みならビーコンの観測をココで開始させる
+//        trackLocationManager.startMonitoringForRegion(self.beaconRegion)
     }
 
     // ビーコンエージェントを停止
@@ -87,14 +89,13 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         case .AuthorizedAlways:
             statusStr = "AuthorizedAlways"
 //            self.status.text = "位置情報認証したよ"
+            // ビーコンの観測を開始させる
+            trackLocationManager.startMonitoringForRegion(self.beaconRegion)
         default:
             break;
         }
         
         println(" CLAuthorizationStatus: \(statusStr)")
-        
-        // ビーコンの観測を開始させる
-        trackLocationManager.startMonitoringForRegion(self.beaconRegion)
     }
     
     //観測の開始に成功すると呼ばれる
@@ -114,7 +115,8 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         case .Inside: // すでに領域内にいる場合は（didEnterRegion）は呼ばれない
             
             trackLocationManager.startRangingBeaconsInRegion(beaconRegion);
-            if (delegate != nil) {
+            if (delegate != nil && locationInRanged == false) {
+                locationInRanged = true
                 delegate?.inRangLocation()
             }
             //sendLocalNotificationWithMessage("会社についたよ")
@@ -144,7 +146,8 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
         self.trackLocationManager.startRangingBeaconsInRegion(self.beaconRegion)
 //        self.status.text = "didEnterRegion"
         // ビーコンと通信可能な領域に入った事を通知
-        if (delegate != nil) {
+        if (delegate != nil && locationInRanged == false) {
+            locationInRanged = true
             delegate?.inRangLocation()
         }
         //sendLocalNotificationWithMessage("会社についたよ")

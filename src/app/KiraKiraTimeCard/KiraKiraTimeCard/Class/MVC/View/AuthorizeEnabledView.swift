@@ -13,6 +13,8 @@ import UIKit
 protocol AuthorizeEnabledViewProtocol :NSObjectProtocol {
     // インターフェースの定義
     init(frame: CGRect, auhorized: Bool)
+    func animatShow()
+    func animatFadeOut()
 }
 
 class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
@@ -58,6 +60,9 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
             fulltext += String(" \n Ready to Sign in.")
         }
         addSubview(label)
+    }
+
+    func animatShow(){
         animatShowTypography()
     }
 
@@ -75,7 +80,6 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
             })
         }
         else {
-            label.alpha = 1
             animatFlashLabel()
         }
     }
@@ -91,6 +95,14 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
         }, completion: { (Bool) -> Void in
                 // 再帰的に呼ぶ
                 self.animatFlashLabel()
+        })
+    }
+
+    func animatFadeOut(){
+        UIView .animateWithDuration(1.0, delay: 5.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            self.alpha = 0
+            }, completion: { (Bool) -> Void in
+                self.removeFromSuperview()
         })
     }
 }

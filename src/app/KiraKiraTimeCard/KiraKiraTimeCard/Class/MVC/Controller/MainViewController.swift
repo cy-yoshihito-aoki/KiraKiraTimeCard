@@ -11,25 +11,23 @@ import UIKit
 class MainViewController: UIViewController {
 
     var beaconModel :BeaconModel = BeaconModel()
-    var authorizeEnabledView :UIView?
-    var authCutInView :UIView?
+    var authorizeEnabledView :AuthorizeEnabledView?
+    var authCutInView :AuthViewBase?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // 時計を表示
         view.addSubview(ClockView(frame: view.frame))
-        self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: true)
-        self.view.addSubview(self.authorizeEnabledView!)
     }
 
     override func viewDidAppear(animated: Bool) {
-//        if (authorizeEnabledView != nil){
-//            authorizeEnabledView?.removeFromSuperview()
-//        }
-//        if (authCutInView != nil){
-//            authCutInView?.removeFromSuperview()
-//        }
+        if (authorizeEnabledView != nil){
+            authorizeEnabledView?.removeFromSuperview()
+        }
+        if (authCutInView != nil){
+            authCutInView?.removeFromSuperview()
+        }
         // 描画完了したらビーコンをスタート
         var timeRecoardModel :TimeRecordModel = TimeRecordModel()
         // ビーコン監視実行開始
@@ -37,19 +35,25 @@ class MainViewController: UIViewController {
             // ビーコンの近くに来たのでログイン可能画面を表示
             self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: timeRecoardModel.authorized)
             self.view.addSubview(self.authorizeEnabledView!)
+            self.authorizeEnabledView?.animatShow()
         }, { () -> () in
+            if (self.authorizeEnabledView != nil){
+                self.authorizeEnabledView?.animatFadeOut()
+            }
             // 現在のログイン状態チェック
             if (timeRecoardModel.authorized == false) {
                 // 未だログイン前
                 // ビーコンとの通信に成功したのでログイン完了画面を表示
                 self.authCutInView = AuthCutInView(frame: self.view.frame)
                 self.view.addSubview(self.authCutInView!)
+                self.authCutInView?.animatShow()
             }
             else {
                 // ログイン済み
                 // ビーコンとの通信に成功したのでログアウト完了画面を表示
                 self.authCutInView = UnauthCutInView(frame: self.view.frame)
                 self.view.addSubview(self.authCutInView!)
+                self.authCutInView?.animatShow()
             }
             // タイムレコード保存
             timeRecoardModel.save({ () -> () in
