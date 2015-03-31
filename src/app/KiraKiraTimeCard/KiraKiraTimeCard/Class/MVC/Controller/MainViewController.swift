@@ -19,15 +19,17 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         // 時計を表示
         view.addSubview(ClockView(frame: view.frame))
+        self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: true)
+        self.view.addSubview(self.authorizeEnabledView!)
     }
 
     override func viewDidAppear(animated: Bool) {
-        if (authorizeEnabledView != nil){
-            authorizeEnabledView?.removeFromSuperview()
-        }
-        if (authCutInView != nil){
-            authCutInView?.removeFromSuperview()
-        }
+//        if (authorizeEnabledView != nil){
+//            authorizeEnabledView?.removeFromSuperview()
+//        }
+//        if (authCutInView != nil){
+//            authCutInView?.removeFromSuperview()
+//        }
         // 描画完了したらビーコンをスタート
         var timeRecoardModel :TimeRecordModel = TimeRecordModel()
         // ビーコン監視実行開始
