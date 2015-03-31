@@ -11,6 +11,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     var beaconModel :BeaconModel = BeaconModel()
+    var timeRecoardModel :TimeRecordModel = TimeRecordModel()
     var authorizeEnabledView :AuthorizeEnabledView?
     var authCutInView :AuthViewBase?
 
@@ -21,19 +22,17 @@ class MainViewController: UIViewController {
         view.addSubview(ClockView(frame: view.frame))
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         if (authorizeEnabledView != nil){
             authorizeEnabledView?.removeFromSuperview()
         }
         if (authCutInView != nil){
             authCutInView?.removeFromSuperview()
         }
-        // 描画完了したらビーコンをスタート
-        var timeRecoardModel :TimeRecordModel = TimeRecordModel()
         // ビーコン監視実行開始
         beaconModel.execute({ () -> () in
             // ビーコンの近くに来たのでログイン可能画面を表示
-            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: timeRecoardModel.authorized)
+            self.authorizeEnabledView = AuthorizeEnabledView(frame: self.view.frame, auhorized: self.timeRecoardModel.authorized)
             self.view.addSubview(self.authorizeEnabledView!)
             self.authorizeEnabledView?.animatShow()
         }, { () -> () in
@@ -41,7 +40,7 @@ class MainViewController: UIViewController {
                 self.authorizeEnabledView?.animatFadeOut()
             }
             // 現在のログイン状態チェック
-            if (timeRecoardModel.authorized == false) {
+            if (self.timeRecoardModel.authorized == false) {
                 // 未だログイン前
                 // ビーコンとの通信に成功したのでログイン完了画面を表示
                 self.authCutInView = AuthCutInView(frame: self.view.frame)
@@ -56,7 +55,7 @@ class MainViewController: UIViewController {
                 self.authCutInView?.animatShow()
             }
             // タイムレコード保存
-            timeRecoardModel.save({ () -> () in
+            self.timeRecoardModel.save({ () -> () in
                 self.beaconModel.stop()
             })
         })

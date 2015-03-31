@@ -35,7 +35,7 @@ class AuthCutInView :AuthViewBase {
     override init(frame: CGRect) {
         label = UILabel(frame: CGRectMake(0, (frame.height-100)/2.0, frame.width, 100))
         label.textAlignment = NSTextAlignment.Center
-        label.font = UIFont(name: "Zapfino", size: 16)
+        label.font = UIFont(name: "Zapfino", size: 18)
         label.textColor = UIColor.greenColor()
         label.text = ""
         fulltext = "Now Sign In My Company."
