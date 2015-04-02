@@ -27,6 +27,16 @@ class ClockView :UIView {
         clockBgImageView.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: self.frame.width)
         addSubview(clockBgImageView)
         
+        // 日付けラベル
+        dateLabel.backgroundColor = UIColor.clearColor()
+        dateLabel.frame     = CGRectMake(self.frame.width - 67,
+            clockBgImageView.frame.origin.y + (self.frame.width/2) - 8,
+            35, 25)
+        dateLabel.font      = (font: UIFont(name: "Zapfino", size: 11))
+        dateLabel.textColor = UIColor.blackColor()
+        dateLabel.textAlignment = NSTextAlignment.Center
+        addSubview(dateLabel)
+        
         // 時計針
         secondHandImageView.frame = clockBgImageView.frame
         minuteHandImageView.frame = clockBgImageView.frame
@@ -41,16 +51,6 @@ class ClockView :UIView {
         centerImageView.frame = clockBgImageView.frame
         centerImageView.backgroundColor = UIColor.clearColor()
         addSubview(centerImageView)
-        
-        // 日付けラベル
-        dateLabel.backgroundColor = UIColor.clearColor()
-        dateLabel.frame     = CGRectMake(self.frame.width - 67,
-                                        clockBgImageView.frame.origin.y + (self.frame.width/2) - 10,
-                                        35, 25)
-        dateLabel.font      = (font: UIFont(name: "Zapfino", size: 11))
-        dateLabel.textColor = UIColor.blackColor()
-        dateLabel.textAlignment = NSTextAlignment.Center
-        addSubview(dateLabel)
         
         // タイマー（1秒毎）
         (NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:"reloadClock", userInfo:nil, repeats:true)).fire()
