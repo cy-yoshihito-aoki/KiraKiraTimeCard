@@ -28,27 +28,36 @@ class AuthViewBase :UIView, AuthViewProtocol {
 
 class AuthCutInView :AuthViewBase {
 
+    var bgView :UIView
     var label :UILabel
     var fulltext :String
     var idx :Int
     
     override init(frame: CGRect) {
         label = UILabel(frame: CGRectMake(0, (frame.height-100)/2.0, frame.width, 100))
+        bgView = UIView(frame: CGRectMake(0, label.frame.origin.y - 10, 0, 120))
+
         label.textAlignment = NSTextAlignment.Center
         label.font = UIFont(name: "Zapfino", size: 18)
-        label.textColor = UIColor.greenColor()
+        label.textColor = UIColor(red: 0.0, green: 0.0, blue: 5.0, alpha: 1.0)
         label.text = ""
         fulltext = "Now Sign In My Company."
         idx = 0
+
+        bgView.backgroundColor = UIColor.whiteColor()
+        
         super.init(frame: frame)
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.clearColor()
         alpha = 0
+
+        addSubview(bgView)
         addSubview(label)
     }
     
     // これを実装しないとエラーになる
     required init(coder aDecoder: NSCoder) {
         label = UILabel(frame: CGRectMake(0, 0, 300, 100))
+        bgView = UILabel(frame: CGRectMake(0, 0, 300, 100))
         fulltext = ""
         idx = 0
         super.init(coder: aDecoder)
@@ -56,6 +65,12 @@ class AuthCutInView :AuthViewBase {
 
     override func animatShow(){
         animatShowTypography()
+        UIView .animateWithDuration(0.02, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+                self.bgView.frame = CGRectMake(self.bgView.frame.origin.x, self.bgView.frame.origin.y, self.frame.width, self.bgView.frame.height)
+            }, completion: { (Bool) -> Void in
+                // 何もしない
+            }
+        )
     }
 
     func animatShowTypography(){
@@ -73,7 +88,7 @@ class AuthCutInView :AuthViewBase {
         }
         else {
             UIView .animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-                self.label.alpha = 1.0
+                self.alpha = 0.8
             }, completion: { (Bool) -> Void in
                 self.animatFadeOut()
             })
@@ -82,9 +97,12 @@ class AuthCutInView :AuthViewBase {
     
     func animatFadeOut(){
         UIView .animateWithDuration(1.0, delay: 5.0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+            self.bgView.frame = CGRectMake(self.frame.width, self.bgView.frame.origin.y, 0, self.bgView.frame.height)
             self.alpha = 0
         }, completion: { (Bool) -> Void in
+            self.bgView.frame = CGRectMake(0, self.bgView.frame.origin.y, self.frame.width, self.bgView.frame.height)
             self.removeFromSuperview()
+            self.alpha = 0
         })
     }
 }

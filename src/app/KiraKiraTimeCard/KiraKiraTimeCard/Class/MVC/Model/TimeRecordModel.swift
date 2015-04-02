@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 saimushi. All rights reserved.
 //
 
+import UIkit
 import Foundation
 
 protocol TimeRecordModelProtocol :NSObjectProtocol {
@@ -56,6 +57,31 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
         ud.synchronize()
         // 終了ブロックをコール
         argSuccessSaveBlock()
+        
+        
+        // ID for Vender.
+        let myIDforVender = UIDevice.currentDevice().identifierForVendor
+        
+        println("myIDforVender :\(myIDforVender.UUIDString.utf8)")
+        
+        // urlを設定
+        let urlString:String = "http://46.51.246.185/kkt/timerecord.php?user="
+        var request = NSMutableURLRequest(URL: NSURL(string: urlString + myIDforVender.UUIDString)!)
+        
+        // GETメソッド設定
+        request.HTTPMethod = "GET"
+        
+        // NSURLSessionでHTTP通信
+        var task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { data, response, error in
+            if (error == nil) {
+                var result = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                println(result)
+            } else {
+                println(error)
+            }
+        })
+        task.resume()
+        
         return true
     }
 
