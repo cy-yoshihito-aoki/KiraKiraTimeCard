@@ -34,7 +34,7 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
         authorized = false
         if (tmpDic is NSMutableDictionary){
             // 既にデータが在る場合は、データから出退勤を決める
-            timeRecords = tmpDic as NSMutableDictionary
+            timeRecords = (tmpDic as NSMutableDictionary).mutableCopy() as NSMutableDictionary
             if (timeRecords.objectForKey(today + "_in") != nil) {
                 // 出勤済み
                 authorized = true
@@ -58,7 +58,7 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
         // 終了ブロックをコール
         argSuccessSaveBlock()
         
-        
+        // サーバにも保存
         // ID for Vender.
         let myIDforVender = UIDevice.currentDevice().identifierForVendor
         

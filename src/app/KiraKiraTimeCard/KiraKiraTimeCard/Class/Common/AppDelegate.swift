@@ -39,6 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        // ビーコンの再開
+        (self.window.rootViewController as MainViewController).beaconModel.start()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

@@ -50,6 +50,7 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
     // ビーコンエージェントによる監視を開始
     func start() {
         // デリゲートを自身に設定(この時点でロケーションデレゲートが発生し始めて、監視が開始された事になる)
+        self.trackLocationManager = CLLocationManager()
         self.trackLocationManager.delegate = self;
         // セキュリティ認証のステータスを取得
         let status = CLLocationManager.authorizationStatus()
@@ -67,7 +68,9 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
     // ビーコンエージェントを停止
     func stop() {
         // ロケーションマネージャーからの通知を受け取るのをやめる
+        locationInRanged = false;
         self.trackLocationManager.delegate = nil;
+        self.trackLocationManager.stopRangingBeaconsInRegion(self.beaconRegion)
     }
 
     //位置認証のステータスが変更された時に呼ばれる
@@ -101,7 +104,7 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
     //観測の開始に成功すると呼ばれる
     func locationManager(manager: CLLocationManager!, didStartMonitoringForRegion region: CLRegion!) {
         
-        println("didStartMonitoringForRegion");
+        println("didStartMonitoringForRegion 1");
         
         //観測開始に成功したら、領域内にいるかどうかの判定をおこなう。→（didDetermineState）へ
         trackLocationManager.requestStateForRegion(self.beaconRegion);

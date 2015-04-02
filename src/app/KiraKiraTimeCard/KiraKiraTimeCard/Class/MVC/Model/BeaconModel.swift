@@ -11,6 +11,7 @@ import Foundation
 protocol BeaconModelProtocol :NSObjectProtocol {
     // インターフェースの定義
     func execute(argSuccessInLocationBlock :(() -> ()), argSuccessBeaconBlock :(() -> ()))
+    func start()
     func stop()
 }
 
@@ -47,6 +48,10 @@ class BeaconModel :NSObject, BeaconModelProtocol, iBeaconAgentDelegate {
         successInLocationBlock = argSuccessInLocationBlock
         successBeaconBlock = argSuccessBeaconBlock
         // ビーコン監視を開始
+        ibeacon.start()
+    }
+
+    func start() {
         ibeacon.start()
     }
 
