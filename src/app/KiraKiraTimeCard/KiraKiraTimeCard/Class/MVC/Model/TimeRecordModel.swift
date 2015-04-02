@@ -12,27 +12,32 @@ protocol TimeRecordModelProtocol :NSObjectProtocol {
     // インターフェースの定義
     var authorized :Bool {get}
     func save(argSuccessSaveBlock :(() -> ())) -> Bool
-    func load() -> NSMutableArray
+    func load() -> NSMutableDictionary
 }
 
 class TimeRecordModel :NSObject, TimeRecordModelProtocol {
     var authorized :Bool
+    var timeRecords :NSMutableDictionary
 
     override init () {
+        timeRecords = NSMutableDictionary();
+        let ud = NSUserDefaults.standardUserDefaults()
+        timeRecords = ud.objectForKey("timeRecords") as NSMutableDictionary
         authorized = false
     }
 
     func save(argSuccessSaveBlock :(() -> ())) -> Bool {
         authorized = true
-        // NSUserDefaultsにタイムレコード保存
+        // 1が出勤済み 0が退勤済み キー無しは未出勤
+        timeRecords.setObject("hoge", forKey: "1")
+        let ud = NSUserDefaults.standardUserDefaults()
+        ud.setObject(timeRecords, forKey: "timeRecords")
         // 終了ブロックをコール
         argSuccessSaveBlock()
         return true
     }
 
-    func load() -> NSMutableArray {
-        var timeRecords :NSMutableArray = NSMutableArray()
-        // NSUserDefaultsからタイムレコードを抽出して配列にしまう
+    func load() -> NSMutableDictionary {
         return timeRecords
     }
 }
