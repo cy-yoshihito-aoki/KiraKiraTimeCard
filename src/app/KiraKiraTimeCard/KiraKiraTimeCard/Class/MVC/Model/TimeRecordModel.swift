@@ -18,25 +18,42 @@ protocol TimeRecordModelProtocol :NSObjectProtocol {
 class TimeRecordModel :NSObject, TimeRecordModelProtocol {
     var authorized :Bool
     var timeRecords :NSMutableDictionary
+    var today :NSString
 
     override init () {
-        timeRecords = NSMutableDictionary();
+        timeRecords = NSMutableDictionary()
         let ud = NSUserDefaults.standardUserDefaults()
         let tmpDic :AnyObject! = ud.objectForKey("timeRecords")
+        // keyとして扱うために日付を文字列にする
+        let dateFormatter : NSDateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyyMMdd"
+        today = dateFormatter.stringFromDate(NSDate())
+        println(today)
         authorized = false
         if (tmpDic is NSMutableDictionary){
             // 既にデータが在る場合は、データから出退勤を決める
             timeRecords = tmpDic as NSMutableDictionary
+            if (timeRecords.objectForKey(today + "_in") != nil) {
+                // 出勤済み
+                authorized = true
+            }
         }
+        println(authorized)
     }
 
     func save(argSuccessSaveBlock :(() -> ())) -> Bool {
-        authorized = true
-        // 1が出勤済み 0が退勤済み キー無しは未出勤
-        timeRecords.setObject("hoge", forKey: "1")
-        //let ud = NSUserDefaults.standardUserDefaults()
-        //ud.setObject(timeRecords, forKey: "timeRecords")
-        //ud.synchronize()
+        if (authorized) {
+            // 出勤記録が存在するので退勤する
+            timeRecords.setObject(NSDate(), forKey: today + "_out")
+        } else {
+            // まだ出勤記録がないので出勤する
+            timeRecords.setObject(NSDate(), forKey: today + "_in")
+        }
+        // 保存
+        let ud = NSUserDefaults.standardUserDefaults()
+        ud.setObject(timeRecords, forKey: "timeRecords")
+        ud.synchronize()
         // 終了ブロックをコール
         argSuccessSaveBlock()
         return true
