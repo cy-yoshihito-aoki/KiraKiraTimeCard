@@ -22,19 +22,21 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
     override init () {
         timeRecords = NSMutableDictionary();
         let ud = NSUserDefaults.standardUserDefaults()
-        let tmpDic: AnyObject? = ud.objectForKey("timeRecords")
-        if (tmpDic != nil){
+        let tmpDic :AnyObject! = ud.objectForKey("timeRecords")
+        authorized = false
+        if (tmpDic is NSMutableDictionary){
+            // 既にデータが在る場合は、データから出退勤を決める
             timeRecords = tmpDic as NSMutableDictionary
         }
-        authorized = false
     }
 
     func save(argSuccessSaveBlock :(() -> ())) -> Bool {
         authorized = true
         // 1が出勤済み 0が退勤済み キー無しは未出勤
         timeRecords.setObject("hoge", forKey: "1")
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setObject(timeRecords, forKey: "timeRecords")
+        //let ud = NSUserDefaults.standardUserDefaults()
+        //ud.setObject(timeRecords, forKey: "timeRecords")
+        //ud.synchronize()
         // 終了ブロックをコール
         argSuccessSaveBlock()
         return true

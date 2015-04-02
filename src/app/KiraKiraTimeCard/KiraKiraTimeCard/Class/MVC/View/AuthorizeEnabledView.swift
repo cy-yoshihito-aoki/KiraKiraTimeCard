@@ -24,7 +24,7 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
     var idx :Int
 
     override init(frame: CGRect) {
-        label = UILabel(frame: CGRectMake(0, (frame.height-100)/2.0 + 100, frame.width, 100))
+        label = UILabel(frame: CGRectMake(0, (frame.height-100)/2.0 + 100, frame.width, 300))
         fulltext = ""
         idx = 0
         super.init(frame: frame)
@@ -48,6 +48,7 @@ class AuthorizeEnabledView :UIView, AuthorizeEnabledViewProtocol {
         label.textAlignment = NSTextAlignment.Center
         label.numberOfLines = 4
         label.font = UIFont(name: "Zapfino", size: 14)
+        label.textColor = UIColor.whiteColor()
         label.text = ""
         label.alpha = 0.1
         fulltext = "Now in the my campany's location."
