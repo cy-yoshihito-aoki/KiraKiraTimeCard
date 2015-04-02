@@ -22,7 +22,10 @@ class TimeRecordModel :NSObject, TimeRecordModelProtocol {
     override init () {
         timeRecords = NSMutableDictionary();
         let ud = NSUserDefaults.standardUserDefaults()
-        timeRecords = ud.objectForKey("timeRecords") as NSMutableDictionary
+        let tmpDic: AnyObject? = ud.objectForKey("timeRecords")
+        if (tmpDic != nil){
+            timeRecords = tmpDic as NSMutableDictionary
+        }
         authorized = false
     }
 

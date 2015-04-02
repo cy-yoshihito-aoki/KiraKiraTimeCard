@@ -194,7 +194,7 @@ class iBeaconAgent:NSObject, iBeaconAgentProtocol, CLLocationManagerDelegate {
             return
         } else if (beacon.proximity == CLProximity.Immediate) {
 //            self.distance.text = "ビーコン近づけすぎ！"
-            return
+//            return
         } else if (beacon.proximity == CLProximity.Near) {
 //            self.distance.text = "出勤できるよ"
         } else if (beacon.proximity == CLProximity.Far) {
