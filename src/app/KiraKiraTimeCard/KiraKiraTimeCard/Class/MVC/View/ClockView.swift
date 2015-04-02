@@ -12,7 +12,7 @@ class ClockView :UIView {
     
     private let secondLayer = CAShapeLayer()
     
-    let dateLabel: UILabel = UILabel(frame: CGRectMake(50, 30, 400, 50))
+    let dateLabel: UILabel = UILabel()
     let secondHandImageView: UIImageView = UIImageView(image: UIImage(named: "handle_sec"))
     let minuteHandImageView: UIImageView = UIImageView(image: UIImage(named: "handle_min"))
     let hourHandImageView: UIImageView   = UIImageView(image: UIImage(named: "handle_hour"))
@@ -23,25 +23,33 @@ class ClockView :UIView {
         self.backgroundColor = UIColor.blackColor()
         
         // 背景
-        var clockBg: UIImageView = UIImageView(image: UIImage(named: "clock_bg"))
-        clockBg.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: self.frame.width)
-        addSubview(clockBg)
+        var clockBgImageView: UIImageView = UIImageView(image: UIImage(named: "clock_bg"))
+        clockBgImageView.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: self.frame.width)
+        addSubview(clockBgImageView)
         
         // 時計針
-        secondHandImageView.frame = clockBg.frame
-        minuteHandImageView.frame = clockBg.frame
-        hourHandImageView.frame   = clockBg.frame
+        secondHandImageView.frame = clockBgImageView.frame
+        minuteHandImageView.frame = clockBgImageView.frame
+        hourHandImageView.frame   = clockBgImageView.frame
         
         addSubview(secondHandImageView)
         addSubview(minuteHandImageView)
         addSubview(hourHandImageView)
         
+        // 針の真ん中
+        var centerImageView: UIImageView = UIImageView(image: UIImage(named: "center"))
+        centerImageView.frame = clockBgImageView.frame
+        centerImageView.backgroundColor = UIColor.clearColor()
+        addSubview(centerImageView)
+        
         // 日付けラベル
         dateLabel.backgroundColor = UIColor.clearColor()
-        dateLabel.frame     = CGRectMake(self.frame.width - 67, dateLabel.frame.maxY + (self.frame.width/2) + 10, 30, 30)
+        dateLabel.frame     = CGRectMake(self.frame.width - 67,
+                                        clockBgImageView.frame.origin.y + (self.frame.width/2) - 10,
+                                        35, 25)
         dateLabel.font      = (font: UIFont(name: "Zapfino", size: 11))
         dateLabel.textColor = UIColor.blackColor()
-        dateLabel.textAlignment = NSTextAlignment.Right
+        dateLabel.textAlignment = NSTextAlignment.Center
         addSubview(dateLabel)
         
         // タイマー（1秒毎）
