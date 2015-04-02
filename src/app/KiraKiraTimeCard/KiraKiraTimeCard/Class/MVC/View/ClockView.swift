@@ -12,74 +12,40 @@ class ClockView :UIView {
     
     private let secondLayer = CAShapeLayer()
     
-    let dateLabel: UILabel = UILabel(frame: CGRectMake(30, 30, 400, 50))
-    let secondHandImageView: UIImageView = UIImageView(frame: CGRect(x: 30, y: 30, width: 2, height: 150))
-    let minuteHandImageView: UIImageView = UIImageView(frame: CGRect(x: 30, y: 30, width: 2, height: 100))
-    let hourHandImageView: UIImageView   = UIImageView(frame: CGRect(x: 30, y: 30, width: 5, height: 50))
+    let dateLabel: UILabel = UILabel(frame: CGRectMake(50, 30, 400, 50))
+    let secondHandImageView: UIImageView = UIImageView(image: UIImage(named: "handle_sec"))
+    let minuteHandImageView: UIImageView = UIImageView(image: UIImage(named: "handle_min"))
+    let hourHandImageView: UIImageView   = UIImageView(image: UIImage(named: "handle_hour"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        var label :UILabel = UILabel(frame: CGRectMake(0, (frame.height-20)/2.0, frame.width, 20))
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "ClockView"
-        addSubview(label)
         
+        self.backgroundColor = UIColor.blackColor()
         
+        // 背景
+        var clockBg: UIImageView = UIImageView(image: UIImage(named: "clock_bg"))
+        clockBg.frame = CGRect(x: 0, y: 100, width: self.frame.width, height: self.frame.width)
+        addSubview(clockBg)
         
-        addSubview(UIImageView(image: UIImage(named: "clock_bg")))
-        
-        secondHandImageView.backgroundColor = UIColor.orangeColor();
-        minuteHandImageView.backgroundColor = UIColor.yellowColor();
-        hourHandImageView.backgroundColor   = UIColor.blueColor();
-        
-        secondHandImageView.frame = CGRect(x: (self.bounds.width - 2)/2, y: 30, width: 2, height: 300)
-        minuteHandImageView.frame = CGRect(x: (self.bounds.width - 2)/2, y: 30, width: 2, height: 200)
-        hourHandImageView.frame   = CGRect(x: (self.bounds.width - 5)/2, y: 30, width: 5, height: 100)
-        
-//        secondHandImageView.layer.position = CGPoint(x: self.bounds.width/2, y: 150)
-//        minuteHandImageView.layer.position = CGPoint(x: self.bounds.width/2, y: 100)
-//        hourHandImageView.layer.position   = CGPoint(x: self.bounds.width/2, y: 50)
+        // 時計針
+        secondHandImageView.frame = clockBg.frame
+        minuteHandImageView.frame = clockBg.frame
+        hourHandImageView.frame   = clockBg.frame
         
         addSubview(secondHandImageView)
         addSubview(minuteHandImageView)
         addSubview(hourHandImageView)
         
+        // 日付けラベル
+        dateLabel.backgroundColor = UIColor.clearColor()
+        dateLabel.frame     = CGRectMake(self.frame.width - 67, dateLabel.frame.maxY + (self.frame.width/2) + 10, 30, 30)
+        dateLabel.font      = (font: UIFont(name: "Zapfino", size: 11))
+        dateLabel.textColor = UIColor.blackColor()
+        dateLabel.textAlignment = NSTextAlignment.Right
         addSubview(dateLabel)
         
-//        // 初期化
-//        secondHandImageView.transform = CGAffineTransformMakeRotation(0)
-//        minuteHandImageView.transform = CGAffineTransformMakeRotation(0)
-//        hourHandImageView.transform   = CGAffineTransformMakeRotation(0)
-        
         // タイマー（1秒毎）
-        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:"reloadClock", userInfo:nil, repeats:true)
-        
-        // 円のレイヤー
-        let path = UIBezierPath()
-        path.addArcWithCenter(
-            CGPointMake(CGRectGetMidX(frame), CGRectGetMidY(frame)),
-            radius: frame.width / 2.0 - 20.0,
-            startAngle: CGFloat(-M_PI_2),
-            endAngle: CGFloat(M_PI + M_PI_2),
-            clockwise: true)
-        secondLayer.path = path.CGPath
-        secondLayer.strokeColor = UIColor.blackColor().CGColor
-        secondLayer.fillColor = UIColor.clearColor().CGColor
-        secondLayer.speed = 0.0
-        layer.addSublayer(secondLayer)
-        
-        // 円を描くアニメーション
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 60.0
-        secondLayer.addAnimation(animation, forKey: "strokeCircle")
-        
-        // CADisplayLink設定
-        let displayLink = CADisplayLink(target: self, selector: Selector("update:"))
-        displayLink.frameInterval = 1   // 1フレームごとに実行
-        displayLink.addToRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
-
+        (NSTimer.scheduledTimerWithTimeInterval(1, target:self, selector:"reloadClock", userInfo:nil, repeats:true)).fire()
     }
     
     // これを実装しないとエラーになる
@@ -125,7 +91,7 @@ class ClockView :UIView {
         myStr += "\(myComponetns.hour)時"
         myStr += "\(myComponetns.minute)分"
         myStr += "\(myComponetns.second)秒"
-        dateLabel.text = myStr
+        dateLabel.text = "\(myComponetns.day)"
 
         // radianで回転角度を指定
         let minute: CGFloat = CGFloat(60 * myComponetns.hour + myComponetns.minute)
@@ -146,13 +112,5 @@ class ClockView :UIView {
             },
             completion: { (Bool) -> Void in
         })
-    }
-    
-    func update(displayLink: CADisplayLink) {
-        // timeOffsetに現在時刻の秒数を設定
-        let time = NSDate().timeIntervalSince1970
-        let seconds = floor(time) % 60
-        let milliseconds = time - floor(time)
-        secondLayer.timeOffset = seconds + milliseconds
     }
 }
